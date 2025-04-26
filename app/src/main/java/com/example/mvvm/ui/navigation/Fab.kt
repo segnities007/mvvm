@@ -2,12 +2,13 @@ package com.example.mvvm.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
+import com.example.domain.presentation.FloatingActionButtonItem
+import com.example.domain.presentation.HomeStatus
+import com.example.domain.presentation.Route
+import com.example.feature.component.buttons.multi_fabs.MultiFloatingActionButton
+import com.example.feature.screen.home.HomeState
 import com.example.mvvm.R
-import com.example.mvvm.data.presentation.FloatingActionButtonItem
-import com.example.mvvm.domain.model.Route
-import com.example.mvvm.domain.presentation.HomeStatus
-import com.example.mvvm.ui.component.buttons.multi_fabs.MultiFloatingActionButton
-import com.example.mvvm.ui.screen.home.HomeState
+import kotlin.collections.isNotEmpty
 
 @Composable
 fun Fab(
@@ -67,7 +68,7 @@ fun Fab(
     when (route) {
         Route.Home -> {
             MultiFloatingActionButton(
-                fabIcon = painterResource(R.drawable.baseline_add_24),
+                fabIcon = painterResource(R.drawable.baseline_settings_24),
                 items = items,
                 homeStatus = homeStatus,
                 onCollapsed = onClick,

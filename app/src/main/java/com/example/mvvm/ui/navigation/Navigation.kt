@@ -1,5 +1,6 @@
 package com.example.mvvm.ui.navigation
 
+import android.preference.PreferenceActivity.Header
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,15 +20,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.mvvm.domain.model.Route
-import com.example.mvvm.domain.presentation.HomeStatus
-import com.example.mvvm.ui.component.bars.TabBar
-import com.example.mvvm.ui.component.bars.TopBar
-import com.example.mvvm.ui.screen.home.Home
-import com.example.mvvm.ui.screen.home.HomeAction
-import com.example.mvvm.ui.screen.home.HomeState
-import com.example.mvvm.ui.screen.home.HomeViewModel
-import com.example.mvvm.ui.screen.tododetail.TodoDetail
+import com.example.domain.presentation.HomeStatus
+import com.example.domain.presentation.Route
+import com.example.feature.screen.home.Home
+import com.example.feature.screen.home.HomeAction
+import com.example.feature.screen.home.HomeState
+import com.example.feature.screen.home.HomeViewModel
+import com.example.feature.screen.tododetail.TodoDetail
+import kotlin.collections.map
 
 @Composable
 fun Navigation() {
@@ -130,30 +130,6 @@ private fun Nav(
                     .padding(it),
         ) {
             content()
-        }
-    }
-}
-
-@Composable
-private fun Header(
-    route: Route,
-    tabIndex: Int,
-    labels: List<String>,
-    onTabSelected: (Int) -> Unit,
-    onBackNavigate: () -> Unit,
-) {
-    when (route) {
-        Route.Home -> {
-            TabBar(
-                labels,
-                tabIndex = tabIndex,
-                onTabSelected = onTabSelected,
-            )
-        }
-        is Route.TodoDetail -> {
-            TopBar(
-                onBackNavigate = onBackNavigate,
-            )
         }
     }
 }
