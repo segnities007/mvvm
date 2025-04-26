@@ -5,7 +5,6 @@ plugins {
     kotlin("plugin.serialization") version "2.0.21"
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
-    id("androidx.room")
 }
 
 android {
@@ -41,13 +40,12 @@ android {
     buildFeatures {
         compose = true
     }
-    room {
-        schemaDirectory("$projectDir/schemas")
-    }
 }
 
 dependencies {
-
+    implementation(project(":domain"))
+    implementation(project(":core"))
+    implementation(project(":feature"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -73,9 +71,4 @@ dependencies {
     // hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-
-    // room
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
 }

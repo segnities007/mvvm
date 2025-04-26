@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "mvvm"
 include(":app")
+include(":data")
+include(":domain")
+include(":core")
+include(":feature")
