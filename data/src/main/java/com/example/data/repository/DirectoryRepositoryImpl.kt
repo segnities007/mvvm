@@ -5,11 +5,8 @@ import com.example.domain.model.Directory
 import com.example.domain.model.DirectoryWithTasks
 import com.example.domain.model.Task
 import com.example.domain.repository.DirectoryRepository
-import javax.inject.Inject
 
-class DirectoryRepositoryImpl
-    @Inject
-    constructor(
+class DirectoryRepositoryImpl(
         private val directoryDao: DirectoryDao,
     ) : DirectoryRepository {
         override suspend fun insertTask(task: Task) {

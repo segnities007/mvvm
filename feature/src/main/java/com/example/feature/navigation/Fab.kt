@@ -1,13 +1,13 @@
-package com.example.mvvm.ui.navigation
+package com.example.feature.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import com.example.domain.presentation.FloatingActionButtonItem
 import com.example.domain.presentation.HomeStatus
 import com.example.domain.presentation.Route
+import com.example.feature.R
 import com.example.feature.component.buttons.multi_fabs.MultiFloatingActionButton
 import com.example.feature.screen.home.HomeState
-import com.example.mvvm.R
 import kotlin.collections.isNotEmpty
 
 @Composable

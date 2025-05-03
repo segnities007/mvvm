@@ -1,4 +1,4 @@
-package com.example.mvvm.ui.navigation
+package com.example.feature.navigation
 
 import androidx.compose.runtime.Composable
 import com.example.domain.presentation.Route

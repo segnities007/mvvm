@@ -8,15 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Directory
 import com.example.domain.model.Task
 import com.example.domain.repository.DirectoryRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class HomeViewModel
-    @Inject
-    constructor(
+class HomeViewModel(
         private val directoryRepository: DirectoryRepository,
     ) : ViewModel() {
         var homeState by mutableStateOf(HomeState())
@@ -33,7 +28,6 @@ class HomeViewModel
                             Task(
                                 title = action.title,
                                 description = action.description,
-                                priority = action.priority,
                                 directoryId = homeState.directories[homeState.selectedDirectoryIndex].directory.id,
                             )
                         repeat(20) {

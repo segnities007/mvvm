@@ -1,7 +1,6 @@
 package com.example.feature.screen.home
 
 import com.example.domain.model.DirectoryWithTasks
-import com.example.domain.model.Priority
 import com.example.domain.model.Task
 
 sealed interface HomeAction {
@@ -26,7 +25,6 @@ sealed interface HomeAction {
     data class InsertTask(
         val title: String,
         val description: String,
-        val priority: Priority,
     ) : HomeAction
 
     data class InsertDirectory(
