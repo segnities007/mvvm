@@ -30,9 +30,7 @@ class HomeViewModel(
                                 description = action.description,
                                 directoryId = homeState.directories[homeState.selectedDirectoryIndex].directory.id,
                             )
-                        repeat(20) {
-                            directoryRepository.insertTask(newTask)
-                        }
+                        directoryRepository.insertTask(newTask)
                         homeState = homeState.copy(directories = directoryRepository.getAllDirectoryWithTasks())
                     }
                 }
@@ -70,6 +68,9 @@ class HomeViewModel(
                 is HomeAction.DeleteDirectory -> {
                     viewModelScope.launch(Dispatchers.IO) {
                         directoryRepository.deleteDirectory(action.directoryWithTasks.directory)
+                        if (homeState.directories.last() == action.directoryWithTasks && homeState.selectedDirectoryIndex - 1 >= 0) {
+                            homeState = homeState.copy(selectedDirectoryIndex = homeState.selectedDirectoryIndex-1)
+                        }
                         homeState =
                             homeState.copy(
                                 directories =

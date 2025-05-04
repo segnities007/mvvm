@@ -54,13 +54,7 @@ fun Fab(
                         label = "create directory",
                         homeStatus = HomeStatus.CREATING_DIRECTORY,
                         onClick = onClick,
-                    ),
-                    FloatingActionButtonItem(
-                        icon = painterResource(R.drawable.baseline_folder_delete_24),
-                        label = "delete directory",
-                        homeStatus = HomeStatus.DELETING_DIRECTORY,
-                        onClick = onClick,
-                    ),
+                    )
                 )
             }
         }
