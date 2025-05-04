@@ -67,12 +67,11 @@ fun Home(
         }
         HomeStatus.CREATING_TASK -> {
             TaskInputCard(
-                onCreate = { title, description, priority ->
+                onCreate = { title, description ->
                     onHomeAction(
                         HomeAction.InsertTask(
                             title = title,
                             description = description,
-                            priority = priority,
                         ),
                     )
                 },

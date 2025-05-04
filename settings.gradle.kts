@@ -23,5 +23,5 @@ rootProject.name = "mvvm"
 include(":app")
 include(":data")
 include(":domain")
-include(":core")
+include(":core-di")
 include(":feature")

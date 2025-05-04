@@ -8,7 +8,7 @@ import com.example.domain.model.Task
 
 @Database(
     entities = [Directory::class, Task::class],
-    version = 1,
+    version = 2,
     exportSchema = false,
 )
 abstract class DirectoryDatabase : RoomDatabase() {

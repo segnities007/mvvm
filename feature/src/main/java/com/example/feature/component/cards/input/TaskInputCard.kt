@@ -22,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.domain.model.Priority
 import com.example.domain.presentation.HomeStatus
 
 @Composable
@@ -30,13 +29,11 @@ fun TaskInputCard(
     onCreate: (
         title: String,
         description: String,
-        priority: Priority,
     ) -> Unit,
     onUpdateHomeStatus: (HomeStatus) -> Unit,
 ) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-    var priority by remember { mutableStateOf(Priority.Medium) }
 
     Box(
         modifier =
@@ -60,7 +57,7 @@ fun TaskInputCard(
                 Input(label = "description", value = description, lines = 10, onValueChange = { description = it })
                 // Priority
                 EnterButton(onClick = {
-                    onCreate(title, description, priority)
+                    onCreate(title, description)
                     onUpdateHomeStatus(HomeStatus.DEFAULT)
                 })
             }
@@ -103,7 +100,7 @@ private fun EnterButton(onClick: () -> Unit) {
 @Preview
 private fun TaskInputCardPreview() {
     TaskInputCard(
-        onCreate = { _, _, _ -> },
+        onCreate = { _, _-> },
         onUpdateHomeStatus = {},
     )
 }

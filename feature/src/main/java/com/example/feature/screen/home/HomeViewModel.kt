@@ -8,15 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Directory
 import com.example.domain.model.Task
 import com.example.domain.repository.DirectoryRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class HomeViewModel
-    @Inject
-    constructor(
+class HomeViewModel(
         private val directoryRepository: DirectoryRepository,
     ) : ViewModel() {
         var homeState by mutableStateOf(HomeState())
@@ -33,12 +28,9 @@ class HomeViewModel
                             Task(
                                 title = action.title,
                                 description = action.description,
-                                priority = action.priority,
                                 directoryId = homeState.directories[homeState.selectedDirectoryIndex].directory.id,
                             )
-                        repeat(20) {
-                            directoryRepository.insertTask(newTask)
-                        }
+                        directoryRepository.insertTask(newTask)
                         homeState = homeState.copy(directories = directoryRepository.getAllDirectoryWithTasks())
                     }
                 }
@@ -76,6 +68,9 @@ class HomeViewModel
                 is HomeAction.DeleteDirectory -> {
                     viewModelScope.launch(Dispatchers.IO) {
                         directoryRepository.deleteDirectory(action.directoryWithTasks.directory)
+                        if (homeState.directories.last() == action.directoryWithTasks && homeState.selectedDirectoryIndex - 1 >= 0) {
+                            homeState = homeState.copy(selectedDirectoryIndex = homeState.selectedDirectoryIndex-1)
+                        }
                         homeState =
                             homeState.copy(
                                 directories =
